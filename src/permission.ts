@@ -7,6 +7,7 @@ import { UserModule } from '@/store/modules/user'
 import { PermissionModule } from '@/store/modules/permission'
 import i18n from '@/lang' // Internationalization
 import settings from './settings'
+// import { error } from 'console'
 
 NProgress.configure({ showSpinner: false })
 
@@ -35,9 +36,11 @@ router.beforeEach(async(to: Route, _: Route, next: any) => {
       // Check whether the user has obtained his permission roles
       if (UserModule.roles.length === 0) {
         try {
+          // console.log('122336')
           // Note: roles must be a object array! such as: ['admin'] or ['developer', 'editor']
           await UserModule.GetUserInfo()
-          const roles = UserModule.roles
+          const roles = UserModule.roles  
+          console.log(roles)     
           // Generate accessible routes map based on role
           PermissionModule.GenerateRoutes(roles)
           // Dynamically add accessible routes
@@ -48,9 +51,11 @@ router.beforeEach(async(to: Route, _: Route, next: any) => {
           // Set the replace: true, so the navigation will not leave a history record
           next({ ...to, replace: true })
         } catch (err) {
+          // debug error
+          console.log('err' + err)
           // Remove token and redirect to login page
           UserModule.ResetToken()
-          Message.error(err || 'Has Error')
+          Message.error('User role Error')
           next(`/login?redirect=${to.path}`)
           NProgress.done()
         }

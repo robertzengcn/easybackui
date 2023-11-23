@@ -11,7 +11,7 @@
       <el-table-column
         width="80"
         align="center"
-        label="ID"
+        :label="$t('common.id')"
       >
         <template slot-scope="{row}">
           <span>{{ row.id }}</span>
@@ -21,7 +21,7 @@
       <el-table-column
         width="180px"
         align="center"
-        label="Name"
+        :label="$t('common.name')"
       >
         <template slot-scope="{row}">
           <span>{{ row.name }}</span>
@@ -31,7 +31,7 @@
       <el-table-column
         width="180px"
         align="center"
-        label="Username"
+        :label="$t('common.username')"
       >
         <template slot-scope="{row}">
           <span>{{ row.username }}</span>
@@ -40,7 +40,7 @@
 
       <el-table-column
         width="105px"
-        label="Phone"
+        :label="$t('common.phone')"
       >
         <template slot-scope="{row}">
           <span>{{ row.phone }}</span>
@@ -49,7 +49,7 @@
 
       <el-table-column
         class-name="status-col"
-        label="Status"
+        :label="$t('common.status')"
         width="110"
       >
         <template slot-scope="{row}">
@@ -59,7 +59,7 @@
 
       <el-table-column
         align="center"
-        label="Actions"
+        :label="$t('common.action')"
         width="120"
       >
         <template slot-scope="{row}">
@@ -88,23 +88,23 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { getArticles } from '@/api/articles'
-import { IStaffData } from '@/api/types'
+import { getStaffs } from '@/api/staffs'
+import { IArticleData } from '@/api/types'
 import Pagination from '@/components/Pagination/index.vue'
 
 @Component({
-  name: 'ArticleList',
+  name: 'StaffList',
   components: {
     Pagination
   }
 })
 export default class extends Vue {
   private total = 0
-  private list: IStaffData[] = []
+  private list: IArticleData[] = []
   private listLoading = true
   private listQuery = {
     page: 1,
-    limit: 20
+    pageSize: 20
   }
 
   created() {
@@ -113,8 +113,9 @@ export default class extends Vue {
 
   private async getList() {
     this.listLoading = true
-    const { data } = await getArticles(this.listQuery)
-    this.list = data.items
+    const { data } = await getStaffs(this.listQuery)
+    console.log(data)
+    this.list = data.records
     this.total = data.total
     // Just to simulate the time of the request
     setTimeout(() => {

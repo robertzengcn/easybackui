@@ -42,3 +42,16 @@ export interface IUserData {
   introduction: string
   roles: string[]
 }
+export interface IStaffData {
+  id: number
+  username: string
+  name: string
+  phone: string
+  email: string
+  avatar: string
+  sex: string
+  status: number
+  createTime: string
+  updateTime: string
+  roles: string[]
+}

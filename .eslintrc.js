@@ -12,6 +12,9 @@ module.exports = {
     ecmaVersion: 2020
   },
   rules: {
+    'object-curly-spacing': 'off',
+    'key-spacing': 'off',
+    'no-trailing-spaces': 'off',
     '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/member-delimiter-style': ['error',
@@ -36,9 +39,9 @@ module.exports = {
     'vue/comma-dangle': 'error',
     'vue/component-name-in-template-casing': ['error', 'kebab-case'],
     'vue/eqeqeq': 'error',
-    'vue/key-spacing': 'error',
+    'vue/key-spacing': 'off',
     'vue/match-component-file-name': 'error',
-    'vue/object-curly-spacing': 'error'
+    'vue/object-curly-spacing': 'off'
   },
   overrides: [
     {

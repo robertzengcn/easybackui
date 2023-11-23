@@ -1,6 +1,9 @@
 export default {
   route: {
     dashboard: '首页',
+    staffManagement:'员工管理',
+    staffList:'员工列表',
+    editStaff:'编辑员工',
     documentation: '文档',
     guide: '引导页',
     permission: '权限测试页',
@@ -63,6 +66,15 @@ export default {
     i18n: '国际化',
     externalLink: '外链',
     profile: '个人中心'
+  },
+  common:{
+    id:'序号',
+    name:'姓名',
+    username:'用户名',
+    status:'状态',
+    phone:'电话',
+    email:'邮箱',
+    action:'操作'
   },
   navbar: {
     logOut: '退出登录',
